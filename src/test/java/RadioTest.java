@@ -202,4 +202,26 @@ public class RadioTest {
         Assertions.assertEquals(0, radio.getCurrentVolume());
     }
 
+    @Test
+    public void prevCurrentVolumeMinBorderVolume() {
+        Radio radio = new Radio();
+        radio.setMaxVolume(100);
+        radio.setMinVolume(0);
+        radio.setCurrentVolume(0);
+        radio.prevCurrentVolume();
+
+        Assertions.assertEquals(0, radio.getCurrentVolume());
+    }
+
+    @Test
+    public void nextCurrentVolumeMaxBorderVolume() {
+        Radio radio = new Radio();
+        radio.setMaxVolume(100);
+        radio.setMinVolume(0);
+        radio.setCurrentVolume(100);
+        radio.nextCurrentVolume();
+
+        Assertions.assertEquals(100, radio.getCurrentVolume());
+    }
+
 }
