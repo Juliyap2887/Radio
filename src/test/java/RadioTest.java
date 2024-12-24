@@ -8,48 +8,19 @@ public class RadioTest {
 
     @Test
     public void shouldSetCurrentStation() {
-        Radio radio = new Radio();
-        radio.setMaxStation(9);
-        radio.setMinStation(0);
-        radio.setCurrentStation(5);
+        Radio radio = new Radio(30);
 
-        Assertions.assertEquals(5, radio.getCurrentStation());
-    }
-
-    @Test
-    public void shouldSetMaxStation() {
-        Radio radio = new Radio();
-        radio.setMaxStation(9);
-
-        Assertions.assertEquals(9, radio.getMaxStation());
-    }
-
-    @Test
-    public void shouldSetMinStation() {
-        Radio radio = new Radio();
-        radio.setMinStation(0);
-
-        Assertions.assertEquals(0, radio.getMinStation());
-    }
-
-
-    @Test
-    public void nextCurrentStationNormStation() {
-        Radio radio = new Radio();
-        radio.setMaxStation(9);
-        radio.setMinStation(0);
-        radio.setCurrentStation(8);
+        radio.setCurrentStation(28);
         radio.nextCurrentStation();
 
-        Assertions.assertEquals(9, radio.getCurrentStation());
+        Assertions.assertEquals(29, radio.getCurrentStation());
     }
 
     @Test
     public void nextCurrentStationMaxBorderStation() {
-        Radio radio = new Radio();
-        radio.setMaxStation(9);
-        radio.setMinStation(0);
-        radio.setCurrentStation(9);
+        Radio radio = new Radio(30);
+
+        radio.setCurrentStation(29);
         radio.nextCurrentStation();
 
         Assertions.assertEquals(0, radio.getCurrentStation());
@@ -57,19 +28,18 @@ public class RadioTest {
 
     @Test
     public void nextCurrentStationOverMaxStation() {
-        Radio radio = new Radio();
-        radio.setMaxStation(9);
-        radio.setMinStation(0);
-        radio.setCurrentStation(10);
+        Radio radio = new Radio(30);
+
+        radio.setCurrentStation(30);
+
 
         Assertions.assertEquals(0, radio.getCurrentStation());
     }
 
     @Test
     public void prevCurrentStationNormStation() {
-        Radio radio = new Radio();
-        radio.setMaxStation(9);
-        radio.setMinStation(0);
+        Radio radio = new Radio(30);
+
         radio.setCurrentStation(6);
         radio.prevCurrentStation();
 
@@ -78,57 +48,24 @@ public class RadioTest {
 
     @Test
     public void prevCurrentStationMinBorderStation() {
-        Radio radio = new Radio();
-        radio.setMaxStation(9);
-        radio.setMinStation(0);
+        Radio radio = new Radio(30);
+
         radio.setCurrentStation(0);
         radio.prevCurrentStation();
 
-        Assertions.assertEquals(9, radio.getCurrentStation());
+        Assertions.assertEquals(29, radio.getCurrentStation());
     }
 
     @Test
     public void prevCurrentStationUnderMinStation() {
-        Radio radio = new Radio();
-        radio.setMaxStation(9);
-        radio.setMinStation(0);
+        Radio radio = new Radio(30);
+
         radio.setCurrentStation(-1);
+        radio.prevCurrentStation();
 
-        Assertions.assertEquals(0, radio.getCurrentStation());
+        Assertions.assertEquals(29, radio.getCurrentStation());
     }
 
-    @Test
-    public void remoteCurrentStationNormStation() {
-        Radio radio = new Radio();
-        radio.setMaxStation(9);
-        radio.setMinStation(0);
-        radio.setCurrentStation(5);
-        radio.remoteCurrentStation(7);
-
-        Assertions.assertEquals(7, radio.getCurrentStation());
-    }
-
-    @Test
-    public void remoteCurrentStationOverMaxStation() {
-        Radio radio = new Radio();
-        radio.setMaxStation(9);
-        radio.setMinStation(0);
-        radio.setCurrentStation(5);
-        radio.remoteCurrentStation(10);
-
-        Assertions.assertEquals(9, radio.getCurrentStation());
-    }
-
-    @Test
-    public void remoteCurrentStationUnderMinStation() {
-        Radio radio = new Radio();
-        radio.setMaxStation(9);
-        radio.setMinStation(0);
-        radio.setCurrentStation(5);
-        radio.remoteCurrentStation(-1);
-
-        Assertions.assertEquals(0, radio.getCurrentStation());
-    }
 
     // Тесты для звука
 
